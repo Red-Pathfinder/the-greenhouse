@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE GREENHOUSE // LOCAL AI NODE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="header-title">the greenhouse.</h1>
+        <p class="header-sub">PRIVATE NODE • OFFLINE INTELLIGENCE • ZERO DATA LEAK</p>
+    </header>
+
+    <main class="container">
+        
+        <section class="upload-box">
+            <input type="file" id="file">
+            <select id="model">
+                <option value="llama3">Llama3 Core</option>
+                <option value="mistral">Mistral Vine</option>
+            </select>
+            <button id="uploadBtn" type="button">Plant Seed</button>
+        </section>
+
+        <section id="chat-box">
+            <div class="message bot">
+                <small style="opacity:0.5; display:block; margin-bottom:5px;">THE NODE</small>
+                The soil is ready. Plant a document seed above or whisper a question to the roots below.
+            </div>
+        </section>
+
+        <div id="loader" class="loader hidden"></div>
+
+        <section class="chat-input">
+            <input type="text" id="question" placeholder="Whisper to the roots..." autocomplete="off">
+            <button id="sendBtn" type="button">Breathe</button>
+        </section>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

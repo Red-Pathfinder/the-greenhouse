@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&display=swap');
+
+:root {
+    --leaf-green: #3a6332;
+    --moss-glow: #94c973;
+    --deep-soil: #060806;
+    --pale-fern: #d1e2d3;
+    --pollen-gold: #b5a642;
+    --panel-bg: rgba(10, 13, 10, 0.85);
+}
+
+/* ===============================
+   Base - Responsive Height
+   ================================ */
+body {
+    margin: 0;
+    font-family: 'Syne', sans-serif;
+    color: var(--pale-fern);
+    background: radial-gradient(circle at center, #141a14 0%, var(--deep-soil) 100%);
+    
+    /* This forces the body to be exactly the height of the screen */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevents double scrollbars */
+}
+
+/* Organic grain overlay */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 1000;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===============================
+   Header - Compact for Laptops
+   ================================ */
+.header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(148, 201, 115, 0.15);
+    background: var(--panel-bg);
+    flex-shrink: 0; /* Keeps header from squishing */
+}
+
+.header-title {
+    font-size: clamp(24px, 4vw, 36px); /* Fluid size */
+    font-weight: 800;
+    color: var(--moss-glow);
+    margin: 0;
+    text-transform: lowercase;
+}
+
+.header-sub {
+    font-size: 11px;
+    letter-spacing: 2px;
+    opacity: 0.5;
+}
+
+/* ===============================
+   Layout Container
+   ================================ */
+.container {
+    width: 95%;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex: 1; /* Takes up all remaining space */
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: 1rem;
+    min-height: 0; /* Crucial for Chrome flexbox scrolling */
+}
+
+/* ===============================
+   Upload Section
+   ================================ */
+.upload-box {
+    background: rgba(58, 99, 50, 0.1);
+    border: 1px solid rgba(148, 201, 115, 0.2);
+    border-radius: 20px 5px;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap; /* Allows wrap on very small screens */
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+input[type="file"], select, input[type="text"] {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--leaf-green);
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-family: inherit;
+    border-radius: 10px;
+    outline: none;
+}
+
+input[type="text"] { flex: 1; }
+
+button {
+    background: var(--leaf-green);
+    border: 1px solid var(--moss-glow);
+    color: #fff;
+    padding: 10px 20px;
+    font-weight: 700;
+    border-radius: 30px 5px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+button:hover {
+    background: var(--moss-glow);
+    color: var(--deep-soil);
+    animation: soilShake 0.4s ease-in-out infinite;
+}
+
+/* ===============================
+   Chat Area - The Dynamic Part
+   ================================ */
+#chat-box {
+    flex: 1; /* This makes the chat box grow to fill the screen */
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(148, 201, 115, 0.08);
+    padding: 1.5rem;
+    overflow-y: auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 0; /* Allows the box to shrink properly */
+}
+
+/* Custom Scrollbar */
+#chat-box::-webkit-scrollbar { width: 6px; }
+#chat-box::-webkit-scrollbar-thumb { background: var(--leaf-green); border-radius: 10px; }
+
+.message {
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 85%;
+    padding: 1rem 1.2rem;
+    border-radius: 15px;
+}
+
+.user { align-self: flex-end; background: rgba(58, 99, 50, 0.25); border-left: 4px solid var(--moss-glow); }
+.bot { align-self: flex-start; background: rgba(255, 255, 255, 0.03); border-right: 4px solid var(--pollen-gold); }
+
+/* ===============================
+   Chat Input Bar
+   ================================ */
+.chat-input {
+    display: flex;
+    gap: 10px;
+    background: var(--panel-bg);
+    padding: 1rem;
+    border-radius: 15px;
+    border: 1px solid var(--leaf-green);
+    flex-shrink: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* ===============================
+   Animations
+   ================================ */
+@keyframes soilShake {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(1px, 1px); }
+    75% { transform: translate(-1px, 1px); }
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    margin: 5px auto;
+    background: radial-gradient(var(--moss-glow), transparent);
+    border-radius: 50%;
+    animation: photosynthesis 1.5s ease-in-out infinite;
+    filter: blur(8px);
+    flex-shrink: 0;
+}
+
+@keyframes photosynthesis {
+    0%, 100% { transform: scale(1); opacity: 0.2; }
+    50% { transform: scale(1.3); opacity: 0.5; }
+}
+
+.hidden { display: none; }

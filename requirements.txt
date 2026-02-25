@@ -1,0 +1,8 @@
+flask
+langchain
+langchain-community
+pypdf
+python-docx
+pandas
+openpyxl
+faiss-cpu
